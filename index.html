@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+  <title>Thiệp Mời Kỷ Yếu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      background: #fff0f5;
+      overflow-x: hidden;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .header, .footer {
+      background: #fff0f5;
+      text-align: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #aa336a;
+      position: relative;
+      z-index: 3;
+    }
+    .header {
+      flex: 0 0 15%;
+    }
+    .footer {
+      flex: 0 0 20%;
+    }
+    .header h1 {
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .from {
+      font-style: italic;
+      font-size: 20px;
+    }
+    .middle {
+      flex: 0 0 60%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Slide wrapper */
+    .slider-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Slide container */
+    .slider {
+      display: flex;
+      height: 100%;
+      transition: transform 0.8s ease;
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* phủ kín khung */
+      object-position: center; /* căn giữa ảnh */
+      display: block;
+    }
+
+    /* Fade effect */
+    .fade-top, .fade-bottom {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .fade-top {
+      top: 0;
+      background: linear-gradient(to bottom, #fff0f5, transparent);
+    }
+    .fade-bottom {
+      bottom: 0;
+      background: linear-gradient(to top, #fff0f5, transparent);
+    }
+
+    .footer .school {
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .footer .class {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 28px;
+      margin: 10px 0;
+    }
+    .footer .time {
+      font-size: 10px;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .message {
+      margin-top: 10px;
+      font-size: 10px;
+      color: #b44b7a;
+      line-height: 1.6;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 24px;
+      }
+      .footer .class {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1 style="font-family: 'Dancing Script'; font-size: 35px; font-weight: 100;">Thiệp mời kỉ yếu</h1>
+      <div class="from" style="font-family: 'Dancing Script'; font-size: 25px; font-weight: 200;">From<br><strong>Hồ Xuân Thích</strong></div>
+    </div>
+
+    <!-- Middle Slide -->
+    <div class="middle">
+      <div class="slider-wrapper">
+        <div class="slider" id="slider">
+          <div class="slide"><img src="anh6.jpg" alt="Ảnh 3"></div>
+          <div class="slide"><img src="anh1.jpg" alt="Ảnh 1"></div>
+          <div class="slide"><img src="anh2.jpg" alt="Ảnh 2"></div>
+          <div class="slide"><img src="anh3.jpg" alt="Ảnh 3"></div>
+          <div class="slide"><img src="anh4.jpg" alt="Ảnh 3"></div>
+          <div class="slide"><img src="anh5.jpg" alt="Ảnh 3"></div>
+
+
+        </div>
+        <div class="fade-top"></div>
+        <div class="fade-bottom"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="containerft" style="display: flex; justify-content: space-around; align-items: center;">
+        <div class="conAnh" style="width: 25%;">
+          <img src="AssetA3.png" alt="Logo A3" style="width: 95%;">
+        </div>
+        <div class="content" style="width: 70%;">
+          <div class="school">TRƯỜNG THPT NGUYỄN TRUNG THIÊN</div>
+          <div class="class" style="font-size: 20px;">Class 12A3</div>
+          <div class="time">
+            9:00AM - 11AM - THỨ BẢY, 03.05.2025
+          </div>
+          <div class="message" style="text-transform: uppercase;">
+            HY VỌNG NHỮNG BỨC ẢNH THANH XUÂN
+            CỦA MÌNH SẼ CÓ SỰ GÓP MẶT CỦA NHỮNG
+            NGƯỜI MÌNH YÊU Quý <br/>
+            Xin chân thành cảm ơn.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 6;
+    const slider = document.getElementById('slider');
+
+    function showSlide(index) {
+      currentSlide = index % totalSlides;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 3000); 
+  </script>
+
+</body>
+</html>
